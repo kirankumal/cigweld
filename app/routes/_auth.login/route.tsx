@@ -1,21 +1,31 @@
-import {Form, useActionData} from '@remix-run/react';
-import {ActionFunctionArgs, json, redirect} from '@shopify/remix-oxygen';
+import {useActionData} from '@remix-run/react';
+import {withZod} from '@remix-validated-form/with-zod';
+import {ActionFunctionArgs, redirect} from '@shopify/remix-oxygen';
+import {ValidatedForm, validationError} from 'remix-validated-form';
 import {z} from 'zod';
+import {Input} from '~/components/input/Input';
 import logo from '~/images/logos/Logo.svg';
 
 const LoginFormSchema = z.object({
-  email: z.string({required_error: 'Email is required'}).email(),
-  passwod: z.string({required_error: 'Password is requuired'}),
+  email: z
+    .string()
+    .min(1, {message: 'Email is required'})
+    .email({message: 'Please enter the valid email'}),
+  password: z.string().min(1, {message: 'Password is required'}),
 });
+
+const validator = withZod(LoginFormSchema);
 
 export async function action({request}: ActionFunctionArgs) {
   const rawFormData = await request.formData();
 
-  const validatedFields = LoginFormSchema.safeParse({...rawFormData});
+  const validatedFields = await validator.validate(await request.formData());
+  console.log('validatedFields', validatedFields);
 
-  if (!validatedFields.success) {
-    return json({errors: validatedFields.error.flatten().fieldErrors});
+  if (validatedFields.error) {
+    return validationError(validatedFields.error);
   }
+  console.log('Validated');
 
   return redirect('/');
 }
@@ -33,7 +43,12 @@ export default function LoginPage() {
         <div className="">
           <h1>Welcome back!</h1>
           <p>Please login to your account</p>
-          <Form method="post" className="flex flex-col">
+          <ValidatedForm validator={validator} method="post">
+            <Input type="email" name="email" label="Email" />
+            <Input type="password" name="password" label="Password" />
+            <input type="submit" value="Login" />
+          </ValidatedForm>
+          {/* <Form method="post" className="flex flex-col">
             <input type="email" name="email" id="email" />
             {actionData?.errors.email &&
               actionData.errors.email.map((error: string) => (
@@ -45,7 +60,7 @@ export default function LoginPage() {
                 <p className="text-red-500">{error}</p>
               ))}
             <input type="submit" value="Log In" />
-          </Form>
+          </Form> */}
         </div>
         <div className=""></div>
       </div>
