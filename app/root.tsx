@@ -156,7 +156,7 @@ export function ErrorBoundary() {
         <Links />
       </head>
       <body>
-        <Layout {...rootData}>
+        {/* <Layout {...rootData}>
           <div className="route-error">
             <h1>Oops</h1>
             <h2>{errorStatus}</h2>
@@ -166,7 +166,8 @@ export function ErrorBoundary() {
               </fieldset>
             )}
           </div>
-        </Layout>
+        </Layout> */}
+        <Outlet />
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
         <LiveReload nonce={nonce} />
