@@ -1,3 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;1,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+body {
+    font-family: 'Barlow Condensed', sans-serif;
+}
+
+ h1, h2, h3,h4, h5 {
+    @apply font-bold italic tracking-normal
+ }
+
+ h1 {
+    @apply text-5xl leading-14
+ }
+
+ h2 {
+    @apply text-4.5xl leading-11
+ }
+
+ h3 {
+    @apply text-3xl leading-9
+ }
+
+ h4 { 
+    @apply text-2xl leading-7.5
+ }
+
+ h5 {
+    @apply text-lg leading-6
+ }
+
+ button {
+    @apply font-bold italic tracking-normal
+ }
+
+ @layer utilities {
+    .button-lg {
+        @apply text-lg leading-6
+    }
+    .button-sm {
+        @apply text-sm leading-6
+    }
+    .button-xs {
+        @apply text-sm leading-4
+    }
+ }

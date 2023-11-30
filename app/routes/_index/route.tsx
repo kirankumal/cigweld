@@ -1,3 +1,20 @@
+import {IconArrowLeft} from '~/components/icons';
+import Button from '~/components/ui/button/Button';
+
 export default function HomePage() {
-  return <h1>Home Page</h1>;
+  return (
+    <>
+      <h1>Home Page</h1>
+      <Button
+        id=""
+        className=""
+        disabled={true}
+        isLoading={false}
+        type="button"
+      >
+        <IconArrowLeft />
+        Shop Now
+      </Button>
+    </>
+  );
 }

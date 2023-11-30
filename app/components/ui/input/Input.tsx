@@ -11,7 +11,7 @@ export const Input = ({name, label}: MyInputProps) => {
     <div>
       <label htmlFor={name}>{label}</label>
       <input {...getInputProps({id: name})} />
-      {error && <span className="my-error-class">{error}</span>}
+      {error && <span className="">{error}</span>}
     </div>
   );
 };

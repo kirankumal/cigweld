@@ -3,8 +3,8 @@ import {withZod} from '@remix-validated-form/with-zod';
 import {ActionFunctionArgs, json, redirect} from '@shopify/remix-oxygen';
 import {ValidatedForm, validationError} from 'remix-validated-form';
 import {z} from 'zod';
-import {SubmitButton} from '~/components/button/SubmitButton';
-import {Input} from '~/components/input/Input';
+import {SubmitButton} from '~/components/ui/button/SubmitButton';
+import {Input} from '~/components/ui/input/Input';
 import logo from '~/images/logos/Logo.svg';
 
 const LoginFormSchema = z.object({
@@ -41,6 +41,10 @@ export default function LoginPage() {
         </figure>
         <div className="">
           <h1>Welcome back!</h1>
+          <h2>hello h2</h2>
+          <h3>hello h3</h3>
+          <h4>hello h4</h4>
+          <h5>hello h5</h5>
           <p>Please login to your account</p>
           <ValidatedForm validator={validator} method="post">
             <Input name="email" label="Email" />
