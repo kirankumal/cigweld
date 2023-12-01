@@ -1,4 +1,4 @@
-import {IconArrowLeft} from '~/components/icons';
+import {IconArrowLeft} from '~/assets/icons';
 import Button from '~/components/ui/button/Button';
 
 export default function HomePage() {
